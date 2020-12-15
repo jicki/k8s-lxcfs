@@ -1,8 +1,8 @@
 #!/bin/bash
 
 # Cleanup
-nsenter -m /proc/1/ns/mnt fusermount -u /var/lib/lxcfs 2> /dev/null || true
-nsenter -m /proc/1/ns/mnt [ -L /etc/mtab ] || \
+nsenter -m/proc/1/ns/mnt fusermount -u /var/lib/lxcfs 2> /dev/null || true
+nsenter -m/proc/1/ns/mnt [ -L /etc/mtab ] || \
         sed -i "/^lxcfs \/var\/lib\/lxcfs fuse.lxcfs/d" /etc/mtab
 
 # Prepare
@@ -15,4 +15,4 @@ cp -f /lxcfs/src/liblxcfs.la /usr/local/lib/lxcfs/liblxcfs.la
 
 
 # Mount
-exec nsenter -m /proc/1/ns/mnt /usr/local/bin/lxcfs /var/lib/lxcfs/ --enable-cfs -l
+exec nsenter -m/proc/1/ns/mnt /usr/local/bin/lxcfs /var/lib/lxcfs/ --enable-cfs -l
