@@ -22,12 +22,14 @@ spec:
         image: jicki/lxcfs:4.0.6
         imagePullPolicy: Always
         securityContext:
+          # 特权模式, 挂载传播 Bidirectional 需要使用特权模式才可以
           privileged: true
         volumeMounts:
         - name: cgroup
           mountPath: /sys/fs/cgroup
         - name: lxcfs
           mountPath: /var/lib/lxcfs
+          # 挂载传播 Bidirectional 为最高传递模式
           mountPropagation: Bidirectional
         - name: usr-local
           mountPath: /usr/local
