@@ -152,9 +152,9 @@ nsenter -m/proc/1/ns/mnt [ -L /etc/mtab ] || \
 mkdir -p /usr/local/lib/lxcfs /var/lib/lxcfs
 
 # Update lxcfs
-cp -f /lxcfs/src/lxcfs /usr/local/bin/lxcfs
-cp -f /lxcfs/src/.libs/liblxcfs.so /usr/local/lib/lxcfs/liblxcfs.so
-cp -f /lxcfs/src/liblxcfs.la /usr/local/lib/lxcfs/liblxcfs.la
+cp -f /lxcfs/lxcfs /usr/local/bin/lxcfs
+cp -f /lxcfs/liblxcfs.so /usr/local/lib/lxcfs/liblxcfs.so
+cp -f /lxcfs/liblxcfs.la /usr/local/lib/lxcfs/liblxcfs.la
 
 
 # Mount
@@ -173,7 +173,7 @@ exec nsenter -m/proc/1/ns/mnt /usr/local/bin/lxcfs /var/lib/lxcfs/ --enable-cfs 
 
 ### Kubernetes 部署 lxcfs
 
-* 在 k8s 中使用 lxcfs 比较麻烦 首先需要确保每个节点的物理主机安装并启动 lxcfs 然后还需要在每个 k8s 节点都部署一个 `lxcfs` 服务.
+* 在 k8s 中使用 lxcfs 比较麻烦 需要在每个 k8s 节点都部署一个 `lxcfs` 服务.
 
 ---
 
