@@ -202,7 +202,7 @@ spec:
     spec:
       containers:
         - name: web
-          image: httpd:2
+          image: httpd:2.4.32
           resources:
             requests:
               memory: "2Gi"
@@ -260,3 +260,50 @@ spec:
             type: File   
 
 ```
+
+
+
+### 测试
+
+
+* free 内存
+
+
+```
+kubectl exec web-fb779ff47-wts5l free
+             total       used       free     shared    buffers     cached
+Mem:       2097152      10508    2086644        264          0        264
+-/+ buffers/cache:      10244    2086908
+Swap:            0          0          0
+
+
+```
+
+---
+
+* top cpu
+
+
+```
+
+top - 02:59:50 up 3 min,  0 users,  load average: 0.48, 0.94, 1.10
+Tasks:   6 total,   1 running,   5 sleeping,   0 stopped,   0 zombie
+%Cpu0  :  0.0 us,  0.0 sy,  0.0 ni,100.0 id,  0.0 wa,  0.0 hi,  0.0 si,  0.0 st
+%Cpu1  :  0.0 us,  0.0 sy,  0.0 ni,100.0 id,  0.0 wa,  0.0 hi,  0.0 si,  0.0 st
+KiB Mem:   2097152 total,    12068 used,  2085084 free,        0 buffers
+KiB Swap:        0 total,        0 used,        0 free.      264 cached Mem
+
+   PID USER      PR  NI    VIRT    RES    SHR S  %CPU %MEM     TIME+ COMMAND                                                                                                        
+     1 root      20   0   79292   4316   3524 S   0.0  0.2   0:00.05 httpd                                                                                                          
+     7 daemon    20   0  368472   3524   2404 S   0.0  0.2   0:00.00 httpd                                                                                                          
+     8 daemon    20   0  368472   3524   2404 S   0.0  0.2   0:00.00 httpd                                                                                                          
+     9 daemon    20   0  368472   3524   2404 S   0.0  0.2   0:00.00 httpd                                                                                                          
+   115 root      20   0   20264   3244   2740 S   0.0  0.2   0:00.00 bash                                                                                                           
+   122 root      20   0   21948   2448   2092 R   0.0  0.1   0:00.00 top
+
+```
+
+
+---
+
+
