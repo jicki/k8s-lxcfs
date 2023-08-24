@@ -11,6 +11,7 @@
 ```
 /proc/cpuinfo
 /proc/diskstats
+/proc/loadavg
 /proc/meminfo
 /proc/stat
 /proc/swaps
@@ -86,6 +87,7 @@ docker run -it -m 256m --memory-swap 256m \
       -v /var/lib/lxcfs/proc/diskstats:/proc/diskstats:rw \
       -v /var/lib/lxcfs/proc/meminfo:/proc/meminfo:rw \
       -v /var/lib/lxcfs/proc/stat:/proc/stat:rw \
+      -v /var/lib/lxcfs/proc/loadavg:/proc/loadavg:rw \
       -v /var/lib/lxcfs/proc/swaps:/proc/swaps:rw \
       -v /var/lib/lxcfs/proc/uptime:/proc/uptime:rw \
       -v /var/lib/lxcfs/proc/slabinfo:/proc/slabinfo:rw \
@@ -241,7 +243,8 @@ spec:
               mountPath: /proc/swaps
             - name: lxcfs-proc-uptime
               mountPath: /proc/uptime
-
+            - name: lxcfs-proc-loadavg
+              mountPath: /proc/loadavg
       # volumes lxcfs
       volumes:
         - name: lxcfs-proc-cpuinfo
@@ -272,7 +275,10 @@ spec:
           hostPath:
             path: /var/lib/lxcfs/proc/uptime
             type: File   
-
+        - name: lxcfs-proc-loadavg
+          hostPath:
+            path: /var/lib/lxcfs/proc/loadavg
+            type: File         
 ```
 
 

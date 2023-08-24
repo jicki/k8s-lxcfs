@@ -15,4 +15,4 @@ cp -f /lxcfs/liblxcfs.la /usr/local/lib/lxcfs/liblxcfs.la
 
 
 # Mount
-exec nsenter -m/proc/1/ns/mnt /usr/local/bin/lxcfs /var/lib/lxcfs/ --enable-cfs -l
+exec nsenter -m/proc/1/ns/mnt /usr/local/bin/lxcfs /var/lib/lxcfs/ --enable-loadavg --enable-cfs -l
