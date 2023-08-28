@@ -237,7 +237,7 @@ spec:
                 cat /proc/cpuinfo
             initialDelaySeconds: 5
             periodSeconds: 5        
-	# volumeMounts lxcfs 
+         # volumeMounts lxcfs 
           volumeMounts:
             - name: lxcfs-proc-cpuinfo
               mountPath: /proc/cpuinfo
