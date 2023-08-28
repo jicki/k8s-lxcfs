@@ -226,7 +226,17 @@ spec:
             limits:
               memory: "2Gi"
               cpu: "2000m"
-
+        # 配置探针在遇到  Transport endpoint is not connected 自动重启
+          livenessProbe:
+            exec:
+              command:
+              - sh
+              - -c
+              - |
+                cat /proc/loadavg &&
+                cat /proc/cpuinfo
+            initialDelaySeconds: 5
+            periodSeconds: 5        
 	# volumeMounts lxcfs 
           volumeMounts:
             - name: lxcfs-proc-cpuinfo
